@@ -1,14 +1,12 @@
 import amqplib from "amqplib";
 
-const queueName1 = "task";
+const queueName = "task";
 
-const receiveFromQueue = async (
-  connection: amqplib.Connection,
-  queueName: string
-) => {
+const receiveTask = async () => {
+  const connection = await amqplib.connect("amqp://localhost");
   const channel = await connection.createChannel();
-  await channel.assertQueue(queueName1, { durable: true });
 
+  await channel.assertQueue(queueName, { durable: true });
   channel.prefetch(1);
 
   console.log(`Waiting for messages in ${queueName}`);
@@ -28,12 +26,6 @@ const receiveFromQueue = async (
     },
     { noAck: false }
   );
-};
-
-const receiveTask = async () => {
-  const connection = await amqplib.connect("amqp://localhost");
-
-  await receiveFromQueue(connection, queueName1);
 };
 
 receiveTask();
