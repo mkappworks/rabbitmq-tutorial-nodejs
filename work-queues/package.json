@@ -1,0 +1,23 @@
+{
+  "name": "work-queues",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "send.ts",
+  "scripts": {
+    "dev:receive": "npx tsx src/receive_task.ts",
+    "dev:send": "npx tsx src/send_task.ts"
+  },
+  "keywords": [],
+  "author": "Malith Kuruppu",
+  "license": "ISC",
+  "dependencies": {
+    "amqplib": "^0.10.4"
+  },
+  "devDependencies": {
+    "@types/amqplib": "^0.10.5",
+    "@types/node": "^20.14.2",
+    "tsx": "^4.13.2",
+    "typescript": "^5.4.5"
+  }
+}
